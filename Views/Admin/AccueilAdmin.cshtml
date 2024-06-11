@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Acceuil Admin";
+    Layout = "_Layout2";
+}
+
+@{
+    ViewData["Title"] = "Liste de devise";
+    Layout ="_Layout2";
+}
+    
+<h2 class="mb-2 page-title">Suivi devis</h2>
+<div class="row my-4">
+@for (var i = 0; i < ViewBag.allDevise.Count; i++)
+{
+    <div class="col-md-4">
+                  <div class="card mb-4 shadow">
+                    <div class="card-body my-n3">
+                      <div class="row align-items-center">
+                        <div class="col">
+                          <a href="#">
+                            <h3 class="h5 mt-4 mb-1">@ViewBag.maison[i].designation</h3>
+                          </a>
+                          <p class="text-muted">@ViewBag.maison[i].description</div> <!-- .col -->
+                          <p class="text-muted">Date début: @ViewBag.allDevise[i].date_debut</div>
+                              @if(ViewBag.Pourcentagepayer[i]<50)
+                              {
+                                <p class=" text-danger">Payer à @ViewBag.Pourcentagepayer[i] % </p><!-- .col -->
+                                
+
+                            }else if (ViewBag.Pourcentagepayer[i] > 50)
+                            {
+                                
+                                <p  style="color: green">Payer à @ViewBag.Pourcentagepayer[i] % </p><!-- .col -->
+                        
+                            }else{
+                                <p >Payer à @ViewBag.Pourcentagepayer[i] % </p><!-- .col -->
+
+                            }
+                </div> <!-- .row -->
+                    </div> <!-- .card-body -->
+                    <div class="card-footer">
+                        <p>Montant déjà payer: @ViewBag.Montantpayer[i].ToString("N0") MGA </p>
+                      <a href="@Url.Action("detailDevis", "Admin", new { id_devis = @ViewBag.allDevise[i].id })" class="d-flex justify-content-between text-muted"><span>Montant total: @ViewBag.montantTotal[i].ToString("N0") MGA </span><i class="fe fe-chevron-right"></i></a>
+                    </div> <!-- .card-footer -->
+                  </div>
+                  <!-- .card -->
+}
+</div>

@@ -1,0 +1,8 @@
+type_maison;description;surface;code_travaux;type_travaux;unité;prix_unitaire;quantite;duree_travaux
+TOKYO;2 chambres, 1 living, 1 salle de bain;128;102;beton armée dosée à 350kg/m3;m3;573215,8;18,4;90
+TOKYO;2 chambres, 1 living, 1 salle de bain;128;103;Armature pour Béton;kg;8500;781;90
+VILLA;2 chambres, 1 living, 1 salle de bain;128;104;Armature pour Béton;kg;300;5;120
+VILLA;2 chambres, 1 living, 1 salle de bain;128;105;Armature pour Béton;kg;4000;6;120
+CITY;2 chambres, 1 living, 1 salle de bain;131;103;Armature pour Béton;kg;8500;5;80
+CITY;2 chambres, 1 living, 1 salle de bain;131;107;Armature pour Béton;kg;3000;19;80
+CITY;2 chambres, 1 living, 1 salle de bain;131;108;Armature pour Béton;kg;40000;34;80

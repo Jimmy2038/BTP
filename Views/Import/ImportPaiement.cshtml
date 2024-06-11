@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Import Paiement";
+    Layout = "_Layout2";
+}
+<h2 class="mb-2 page-title">Import Paiement</h2>
+<form asp-action="importCsvPayement" asp-controller="Import" method="post" enctype="multipart/form-data">
+    <div class="custom-file">
+        <div class="form-group mb-3">
+           <label for="customFile">Upload Csv</label>
+              <div class="custom-file">
+                  <input type="file" name="file" class="custom-file-input" id="customFile" onchange="updateFileNameLabel(this)">
+                   <label class="custom-file-label" id="customFileLabel" for="customFile">Choose file</label>
+             </div>
+        </div>
+        @if(ViewBag.erreur != null){
+            @for (var i = 0; i < ViewBag.erreur.Count; i++)
+            {
+                <p  class="text-danger">@ViewBag.erreur[i] </p>
+                
+            }
+
+        }else if (ViewBag.succes != null)
+        {
+            <p class="text-succes"></p>
+        }
+    </div>
+    @*<div class="form-group mb-3">
+        <label for="customFile">Custom file input</label>
+        <div class="custom-file">
+            <span asp-validation-for="photo" class="text-danger"></span>
+            <input type="file" asp-for="photo" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+    </div>*@
+    <div class="modal-footer">
+        <button type="submit" class="btn mb-2 btn-primary">Upload</button>
+    </div>
+    
+</form>
+
+<script>
+    function updateFileNameLabel(input) {
+        var fileNameLabel = document.getElementById("customFileLabel");
+        if (input.files.length > 0) {
+            fileNameLabel.textContent = input.files[0].name;
+        } else {
+            fileNameLabel.textContent = "Choose file";
+        }
+    }
+</script>

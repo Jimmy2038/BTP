@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Accueil Client";
+    Layout = "_Layout3";
+}
+
+    
+<h2 class="mb-2 page-title">Proposition Maison</h2>
+
+<div class="card-deck my-4">
+@for (var i = 0; i < @ViewBag.allMaison.Count; i++)
+{
+    <form method="get" action="../Client/insertDevis">
+         <div class="card mb-4 shadow">
+             <div class="card-body text-center my-4">
+                    <a href="#">
+                      <h3 class="h5 mt-4 mb-0">@ViewBag.allMaison[i].designation</h3>
+                    </a>
+                    
+                    <span class="h1 mb-0">@ViewBag.prixMaison[i].ToString("N0") MGA</span>
+                    <!-- <p class="text-muted">year</p> -->
+                    <ul class="list-unstyled">
+                      <li>@ViewBag.allMaison[i].description</li>
+                      <li>De surface @ViewBag.allMaison[i].surface m2</li>
+                      <li>Durée de construction @ViewBag.allMaison[i].duree jrs</li>
+                      
+                    </ul>
+                    <div class="form-group">
+                          <label for="selectValue">Choix Finition:</label>
+                          <select id="selectValue" name="typeFinition" class="form-control" >
+                              @for (var j = 0; j < ViewBag.finition.Count; j++)
+                              {
+                                  <option value="@ViewBag.finition[j].id">@ViewBag.finition[j].type</option>
+                              }
+                                        
+                          </select>
+                          <label for="recipient-name" class="col-form-label">Date du debut du travaux:</label>
+                          <input type="date" name="date_debut" class="form-control" id="recipient-name">
+                    </div>
+                    <label for="recipient-name" class="col-form-label">Lieu de construction:</label>
+                    <input type="text" name="lieu" class="form-control" id="recipient-name">
+                    <br />
+                    <input type="radio" class="radio-maison" name="radioValueMaison" value="@ViewBag.allMaison[i].id" style="height: 50px; width: 50px; margin: auto;"> 
+                 <br /> <button type="submit" class="btn mb-2 btn-primary btn-lg">Choisir</button>
+                </div> <!-- .card-body -->
+         </div> 
+     </form>
+         <!-- .card -->
+}
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const radioButtons = document.querySelectorAll('.radio-maison');
+        radioButtons.forEach((radio) => {
+            radio.addEventListener('change', () => {
+                radioButtons.forEach((btn) => {
+                    if (btn !== radio) {
+                        btn.checked = false;
+                    }
+                });
+            });
+        });
+    });
+</script>

@@ -1,0 +1,211 @@
+﻿
+@using System.Security.Claims
+@using BTP.Models.Util_devis
+
+@{
+    ViewData["Title"] = "Finition";
+    Layout = "_Layout2";
+    int i=0;
+    var mail = User.FindFirst(ClaimTypes.Email)?.Value;
+}
+
+
+@if (@ViewBag.erreur!= null)
+{
+     <script>
+    // Attendez que le document soit prêt
+    $(document).ready(function() {
+        // Sélectionnez la modal ajouter et appelez la méthode modal() pour l'afficher
+        $('.ajouter').modal('show');
+    });
+    </script>
+}
+
+@if (@ViewBag.erreurModif!= null)
+{
+     <script>
+    // Attendez que le document soit prêt
+    $(document).ready(function() {
+        // Sélectionnez la modal ajouter et appelez la méthode modal() pour l'afficher
+        $('.modifier').modal('show');
+    });
+    
+    </script>
+}
+   
+
+<h2 class="mb-2 page-title">Gestion de Finition</h2>
+<div class="row my-4">
+                <!-- Small table -->
+                <div class="col-md-12">
+                  <div class="card shadow">
+                    <div class="card-body">
+                      <!-- table -->
+                      <table class="table datatables" >
+                        
+                        @* modal insert *@
+                        <div class="modal fade ajouter"  tabindex="-1" role="dialog" aria-labelledby="varyModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="varyModalLabel">New </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <form method="get" asp-action="insert" asp-controller="Salle">
+                                  <div class="form-group">
+                                    <label for="recipient-name"  class="col-form-label">Designation:</label>
+                                    <input type="text"  class="form-control" id="recipient-name">
+                                    <span  class="text-danger" ></span>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="selectValue">Select:</label>
+                                    <select id="selectValue" name="selectValue" class="form-control" >
+                                        <option value="value1">Value 1</option>
+                                        <option value="value2">Value 2</option>
+                                        <option value="value3">Value 3</option>
+                                    </select>
+                                  </div>
+
+    <!-- Radio Buttons -->
+    <div class="form-group">
+        <label>Radio:</label><br>
+        <label><input type="radio" name="radioValue" value="option1"> Option 1</label><br>
+        <label><input type="radio" name="radioValue" value="option2" > Option 2</label><br>
+        <label><input type="radio" name="radioValue" value="option3" > Option 3</label>
+    </div>
+
+    <!-- Check Box -->
+    <div class="form-group">
+        <label><input type="checkbox" id="checkBoxValue" name="checkBoxValue"  Checkbox</label>
+    </div>
+                                  
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn mb-2 btn-primary">Add</button>
+                                  </div>
+                                </form>
+                              </div>
+                              
+                            </div>
+                        </div>
+                      </div>
+                      @* modal modifier *@
+<div class="modal fade modifier" tabindex="-1" role="dialog" aria-labelledby="varyModalLabel2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="varyModalLabel2">Edit </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="get" asp-action="updateFinition" asp-controller="Travaux">
+                    <div class="form-group">
+                        <label for="prix" class="col-form-label">Type finition:</label>
+                        @if (@ViewBag.erreurModif== null)
+                        {
+                            <input type="text" class="form-control" id="designation" name="finition" disabled  >
+                        }else if(@ViewBag.erreurModif != null){
+                            
+                        }
+
+
+                        <label for="prix" class="col-form-label">Pourcentage:</label>
+                        <input type="text" class="form-control" id="pu" name="pourcentage"   >
+                        
+                    </div>
+                    <div class="form-group">
+                        
+                        <input type="hidden" class="form-control" id="idS" name="id">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn mb-2 btn-primary">Edit</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+                        <thead>
+                          <tr>
+                            
+                            
+                            <th>Type</th>
+                            <th>Pourcentage</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach(Finition m in ViewBag.finition){ 
+
+                         
+                          
+                          <tr>
+                            
+                            
+                            <td>@m.type</td>
+                            <td>@m.pourcentage</td>
+
+                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span class="text-muted sr-only">Action</span>
+                              </button>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item modifier-trigger" data-toggle="modal" data-target=".modifier" data-salleid="@m.id" data-designation="@m.type"   data-pourcentage="@m.pourcentage" href="#">Edit</a>
+                            </td>
+                          </tr>
+                          
+                          i++;
+}
+                        </tbody>
+                      </table>
+
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+     
+
+
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/dataTables.bootstrap4.min.js"></script>
+
+ <script>
+    $('.modifier-trigger').on('click', function (event) {
+    var button = $(this);
+    var variable1 = button.data('salleid'); // Utilisez data-nom
+    var variable2 = button.data('designation'); // Utilisez data-prix (tsy azo atao misy majuscul ilay data-...)
+    var pu = button.data('pourcentage'); // Utilisez data-prix (tsy azo atao misy majuscul ilay data-...)
+    
+
+    console.log("Valeur de variable1:", variable1);
+    console.log("Valeur de variable2:", variable2);
+    //console.log("Valeur de type:", type);
+
+    var modal = $('.modifier'); // Sélectionnez le modal directement
+    modal.find('.modal-body #idS').val(variable1);
+    modal.find('.modal-body #designation').val(variable2);
+    modal.find('.modal-body #pu').val(pu);
+});
+
+ </script>
+
+     <script>
+      $('#dataTable-1').DataTable(
+      {
+        autoWidth: true,
+        "lengthMenu": [
+          [10, 32, 64, -1],
+          [10, 32, 64, "All"]
+        ]
+      });
+    </script>
+

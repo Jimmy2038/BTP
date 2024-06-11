@@ -1,0 +1,120 @@
+﻿@model BTP.Models.Client.Utilisateur
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="~/BtpLogo2.ico">
+    <title>Tiny Dashboard - A Bootstrap Dashboard Template</title>
+    <!-- Simple bar CSS -->
+    <link rel="stylesheet" href="~/css/simplebar.css">
+    <!-- Fonts CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- Icons CSS -->
+    <link rel="stylesheet" href="~/css/feather.css">
+    <!-- Date Range Picker CSS -->
+    <link rel="stylesheet" href="~/css/daterangepicker.css">
+    <!-- App CSS -->
+    <link rel="stylesheet" href="~/css/app-light.css" id="lightTheme" disabled>
+    <link rel="stylesheet" href="~/css/app-dark.css" id="darkTheme">
+  </head>
+  <body class="dark ">
+        <div class="wrapper vh-100">
+          <div class="row align-items-center h-100">
+            <form method="get" asp-action="InscriptionModel" asp-controller="Auth" class="col-lg-6 col-md-8 col-10 mx-auto">
+              <div class="mx-auto text-center my-4">
+                <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="auth-login.cshtml">
+
+                  <img src="~/BtpLogo.png" />
+
+                </a>
+                <h2 class="my-3">Register</h2>
+              </div>
+              <div class="form-group">
+                <label asp-for="email" for="inputEmail4">Email</label>
+                <input asp-for="email" type="email" class="form-control" id="inputEmail4">
+                <span asp-validation-for="email" class="text-danger"></span>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label asp-for="nom" for="firstname">Nom</label>
+                  <input  asp-for="nom" type="text" id="firstname" class="form-control">
+                  <span asp-validation-for="nom" class="text-danger"></span>
+                </div>
+                <div   class="form-group col-md-6">
+                  <label asp-for="prenom" for="lastname">Prenom</label>
+                  <input  asp-for="prenom" type="text" id="lastname" class="form-control">
+                  <span asp-validation-for="prenom" class="text-danger"></span>
+                  <span ></span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label asp-for="date_naissance" for="dateNaissance">Date de naissance</label>
+                  <input asp-for="date_naissance" type="date" id="dateNaissance" class="form-control">
+                  <span asp-validation-for="date_naissance" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                  <label asp-for="numero" for="numero">Numéro de téléphone</label>
+                  <input asp-for="numero" type="number" id="numero" class="form-control">
+                  <span asp-validation-for="numero" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label asp-for="adresse" for="adress">Adresse</label>
+                      <input  asp-for="adresse" type="text" id="adress" class="form-control">
+                      <span asp-validation-for="adresse" class="text-danger"></span>
+                    </div>
+               </div>
+              <hr class="my-4">
+              <div class="row mb-4">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label asp-for="mdp" for="inputPassword5">New Password</label>
+                    <input asp-for="mdp" type="password" class="form-control" id="inputPassword5">
+                    <span asp-validation-for="mdp" class="text-danger"></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <p class="mb-2">Password requirements</p>
+                  <p class="small text-muted mb-2"> To create a new password, you have to meet all of the following requirements: </p>
+                  <ul class="small text-muted pl-4 mb-0">
+                    <li> Minimum 5 character </li>
+                  </ul>
+                </div>
+              </div>
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+              <p class="mt-5 mb-3 text-muted text-center">© 2024</p>
+            </form>
+          </div>
+        </div>
+        <script src="~/js/jquery.min.js"></script>
+        <script src="~/js/popper.min.js"></script>
+        <script src="~/js/moment.min.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>
+        <script src="~/js/simplebar.min.js"></script>
+        <script src='~/js/daterangepicker.js'></script>
+        <script src='~/js/jquery.stickOnScroll.js'></script>
+        <script src="~/js/tinycolor-min.js"></script>
+        <script src="~/js/config.js"></script>
+        <script src="~/js/apps.js"></script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+
+          function gtag()
+          {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'UA-56159088-1');
+        </script>
+      </body>
+</html>

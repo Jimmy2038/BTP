@@ -1,0 +1,49 @@
+﻿@using BTP.Models.Util_devis
+
+
+@{
+    ViewData["Title"] = "Detail Travaux";
+    Layout = "_Layout2";
+}
+
+@model List<DetailDevis>
+<h2 class="mb-2 page-title">Detail devis</h2>
+<div class="row my-4">
+                <!-- Small table -->
+                <div class="col-md-12">
+                  <div class="card shadow">
+                    <div class="card-body">
+<table class="table datatables" >
+    <div class="row">
+            
+            
+
+   
+    </div>
+    
+    <thead>
+        <tr>
+            <th>N°</th>
+            <th>Designation</a></th>
+            <th>Unite</th>
+            <th>PU</th>
+            <th>Quantite</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var article in Model)
+        {
+            <tr>
+                <td>@article.code_travaux</td>
+                <td>@article.type_travaux</td>
+                <td>@article.unite</td>
+                <td>@article.unite</td>
+                <td>@article.quantite</td>
+                <td>@article.prixTotal</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Client -->

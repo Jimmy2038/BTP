@@ -1,0 +1,361 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_Layout2";
+}
+     <script src="~/js/apexcharts.js"></script>
+            <div class="mb-2 align-items-center">
+              <div class="card shadow mb-4">
+                <div class="card-body">
+                  <div class="row mt-1 align-items-center">
+                    <div class="col-12 col-lg-4 text-left pl-4">
+                      <p class="mb-1 small text-muted">Montant total devis</p>
+                      <span class="h3">@ViewBag.montantDevisTotal.ToString("N0") MGA</span>
+                    <!--  <span class="small text-muted">+20%</span>
+                      <span class="fe fe-arrow-up text-success fe-12"></span>-->
+                      <p class="text-muted mt-2"> Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.
+                        Nam eget dui </p>
+                    </div>
+                    <div class="col-6 col-lg-2 text-center py-4">
+                      <p class="mb-1 small text-muted">Total Payement effectué</p>
+                      <span class="h3">@ViewBag.totalPayer.ToString("N0") MGA</span><br />
+                      <!--<span class="small text-muted">+20%</span>
+                      <span class="fe fe-arrow-up text-success fe-12"></span>-->
+                    </div>
+                    <div class="col-6 col-lg-2 text-center py-4 mb-2">
+                      <p class="mb-1 small text-muted">Goal Value</p>
+                      <span class="h3">$260</span><br />
+                      <span class="small text-muted">+6%</span>
+                      <span class="fe fe-arrow-up text-success fe-12"></span>
+                    </div>
+                    <div class="col-6 col-lg-2 text-center py-4">
+                      <p class="mb-1 small text-muted">Completions</p>
+                      <span class="h3">26</span><br />
+                      <span class="small text-muted">+20%</span>
+                      <span class="fe fe-arrow-up text-success fe-12"></span>
+                    </div>
+                    <div class="col-6 col-lg-2 text-center py-4">
+                      <p class="mb-1 small text-muted">Conversion</p>
+                      <span class="h3">6%</span><br />
+                      <span class="small text-muted">-2%</span>
+                      <span class="fe fe-arrow-down text-danger fe-12"></span>
+                    </div>
+                  </div>
+                  <div class="row"> <!--selct-->
+                        <form class="col-12" id="yearForm" method="post" controller="Admin" action="dashboard"> 
+                                <select class="custom-select col-2" id="courbe-select" name="annee" style="margin-left: 25px;">
+                                    <option selected>Choisi année</option>
+                                    @for (int i = 0; i < ViewBag.annee.Count; i++)
+                                    {
+                                        <option value="@ViewBag.annee[i]">@ViewBag.annee[i]</option>
+                                    }
+                                </select>
+                        </form>
+                       <!-- <span class="col-2">
+                            <input type="date" class="form-control" />
+                        </span>
+                           <select class="custom-select col-2" id="export" name="test" style="margin-left: 25px;">
+                          <option selected>Export</option>
+                          <option value="pdf">Export pdf</option>
+                          <option value="csv">Export csv</option>
+                          <option value="png">Export png</option>
+                        </select> -->
+                  </div>
+                  <br />
+                  <div class="chartbox mr-4">
+                    <div id="colon"></div> <!--courbe-->
+                  </div>
+                </div> <!-- .card-body -->
+              </div> <!-- .card -->
+            </div><!--chart be-->
+
+            <div class="row items-align-baseline">
+              
+              
+            </div> <!-- .row -->
+<script>
+    // line courbe
+
+
+    var options = {
+      series: [{
+        name: "Desktops",
+        data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+      },
+      {
+        name: "Lunette 3D",
+        data: [30, 24, 5, 58, 69, 162, 89, 81, 28],
+
+      }
+      ],
+      chart: {
+        height: 350,
+        type: 'line',
+        zoom: {
+          enabled: false
+        },
+        foreColor: '#BDBDBD'
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'straight'
+      },
+      title: {
+        text: 'Product Trends by Month',
+        align: 'left',
+        color: '#BDBDBD'
+      },
+      grid: {
+        row: {
+          colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+          opacity: 0
+        },
+      },
+      xaxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+      }
+    };
+
+    var courbe = new ApexCharts(document.querySelector("#courbe"), options);
+    courbe.render();
+
+  </script>
+  <style>
+    .apexcharts-yaxis-label tspan,
+    .apexcharts-xaxis-label tspan {
+      fill: #e2e5eb;
+      /* Couleur du texte */
+      font-size: 16px;
+      /* Taille de la police */
+      font-weight: 500;
+      /* Poids de la police */
+    }
+  </style>
+
+    <script>
+    // Configuration du graphique
+
+    //donut
+    var options = {
+      series: [44, 55, 41, 17, 15],
+      chart: {
+        type: 'pie',
+        foreColor: '#adb5bd',
+      }, dataLabels: {
+        enabled: true, // Active les labels de données
+        style: {
+          colors: ['#fffff0'], 
+          fontSize: '10px', 
+        },
+      },
+      responsive: [{
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: 'bottom',
+            color:  '#ffffff'
+          }
+        }
+      }]
+    };
+
+    var chart = new ApexCharts(document.querySelector("#donut"), options);
+    chart.render();
+
+  </script>
+
+  <script>
+    // batton
+    // Définition des couleurs
+    var colors = ['#FF0000', '#00FF00', '#0000FF'];
+
+    // Ajustement des données pour correspondre aux catégories
+    var data = [
+      ['John Doe', 21],
+      ['Joe Smith', 22],
+      ['Jake Williams', 10],
+      ['Amber', 28],
+      ['Peter Brown', 16],
+      ['Mary Evans', 21],
+      ['David Wilson', 13],
+      ['Lily Roberts', 30]
+    ];
+
+    var montantTotalParMoisList = @Html.Raw(Json.Serialize(ViewBag.montantTotalParMoisList));
+
+    var maxMontant = Math.max(...montantTotalParMoisList);
+
+    // Calculer le maximum de l'axe des ordonnées en ajoutant 1/3 au maximum des montants
+    var maxY = maxMontant + (maxMontant * 1.5);
+
+    var roundedMontants = montantTotalParMoisList.map(function(montant) {
+        return Math.round(montant);
+    });
+
+    var options = {
+        series: [{
+            name: 'Montant total de devis',
+            data: roundedMontants
+        }],
+      chart: {
+        height: 350,
+        type: 'bar',
+        events: {
+          click: function (chart, w, e) {
+            // console.log(chart, w, e)
+          }
+        }
+      },
+      color: 'blue',
+      plotOptions: {
+        bar: {
+          columnWidth: '45%',
+          distributed: true,
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      legend: {
+        show: false
+      },
+      xaxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep','Oct','Nov','Dec'], // Utiliser les noms pour les catégories
+        labels: {
+          style: {
+            color: 'blue',
+            fontSize: '12px'
+          }
+        }
+      }
+    };
+
+    // Rendu du graphique
+    var colon = new ApexCharts(document.querySelector("#colon"), options);
+    colon.render();
+  </script>
+
+   <script>
+
+
+    $(document).ready(function () {
+    $('#courbe-select').change(function () {
+        var selectedValue = $(this).val();
+        $.ajax({
+            url: '/Admin/dashboard', // Remplacez par l'URL de votre contrôleur
+            type: 'GET',
+            data: { test: selectedValue },
+            success: function (data) {
+                // Transformez les données en un format compatible
+                var newData = data.map(item => ({
+                    name: item.x,
+                    data: item.num_place // Assurez-vous que 'data' est un tableau de nombres
+                }));
+                
+                // Récupérez les valeurs de 'daty' pour l'axe X
+                var categories = data[0].daty;
+                
+                // Mettez à jour le graphique avec les nouvelles séries et les nouvelles catégories
+                courbe.updateOptions({
+                    xaxis: {
+                        categories: categories
+                    }
+                });
+                
+                // Mettez à jour le graphique avec les nouvelles séries
+                courbe.updateSeries(newData);
+            }
+        });
+    });
+});
+
+</script>
+
+<script src="~/lib/html2canvas.min.js"></script>
+<script src="~/lib/jspdf.min.js"></script>
+<script>
+
+    function exportChart(type) {
+    var chart = document.querySelector("#donut");
+      console.log('function');
+
+    if (type === 'pdf') {
+        // Créez une représentation du graphique en tant qu'image ou SVG
+        var chartSVG = chart.querySelector('svg'); // Supposons que votre graphique soit représenté en SVG
+        var svgData = new XMLSerializer().serializeToString(chartSVG);
+
+        // Convertissez le SVG en image (facultatif)
+        var canvas = document.createElement('canvas');
+        var context = canvas.getContext('2d');
+        var img = new Image();
+        img.onload = function() {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            context.drawImage(img, 0, 0);
+            var imageData = canvas.toDataURL('image/png');
+
+            // Utilisation de jsPDF pour l'exportation en PDF
+            var pdf = new jsPDF();
+            pdf.text(10, 10, 'Chart Export'); // Ajoutez un titre ou une description au PDF
+
+            // Redimensionner l'image si nécessaire
+            var maxWidth = 180; // Définir la largeur maximale souhaitée
+            var maxHeight = 120; // Définir la hauteur maximale souhaitée
+            var width = img.width;
+            var height = img.height;
+            if (width > maxWidth || height > maxHeight) {
+                var ratio = Math.min(maxWidth / width, maxHeight / height);
+                width *= ratio;
+                height *= ratio;
+            }
+
+            // Ajoutez l'image au PDF avec les dimensions redimensionnées
+            pdf.addImage(imageData, 'PNG', 10, 20, width, height);
+
+            // Enregistrez le PDF
+            pdf.save('chart.pdf');
+        };
+        img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
+    } else if (type === 'png') {
+        // Exportation en PNG existante
+        html2canvas(chart).then(canvas => {
+            var link = document.createElement('a');
+            link.href = canvas.toDataURL();
+            link.download = 'chart.png';
+            link.click();
+        });
+    } else if (type === 'csv') {
+        // Exportation au format CSV existante
+        var csvContent = "data:text/csv;charset=utf-8,";
+        data.forEach(function(row) {
+            var rowContent = row.join(",");
+            csvContent += rowContent + "\n";
+        });
+        var encodedUri = encodeURI(csvContent);
+        var link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "chart.csv");
+        document.body.appendChild(link);
+        link.click();
+    }
+}
+
+
+    // Ajouter un écouteur d'événements pour le sélecteur d'exportation
+    document.querySelector("#export").addEventListener("change", function() {
+        var exportType = this.value;
+        console.log(exportType);
+        exportChart(exportType);
+    });
+</script>
+
+<script>
+    document.getElementById('courbe-select').addEventListener('change', function() {
+        document.getElementById('yearForm').submit();
+    });
+</script>
+

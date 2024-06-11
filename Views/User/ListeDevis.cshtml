@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Liste de devise";
+    Layout ="_Layout3";
+}
+    
+<h2 class="mb-2 page-title">Liste Devis</h2>
+<div class="row my-4">
+@for (var i = 0; i < ViewBag.allDevise.Count; i++)
+{
+    <div class="col-md-4">
+                  <div class="card mb-4 shadow">
+                    <div class="card-body my-n3">
+                      <div class="row align-items-center">
+                        <div class="col">
+                          <a href="#">
+                            <h3 class="h5 mt-4 mb-1">@ViewBag.maison[i].designation</h3>
+                          </a>
+                          <p class="text-muted">@ViewBag.maison[i].description</div> <!-- .col -->
+                          <p class="text-muted">Date début: @ViewBag.allDevise[i].date_debut</div> <!-- .col -->
+                      </div> <!-- .row -->
+                    </div> <!-- .card-body -->
+                    <div class="card-footer">
+                      <a href="@Url.Action("detailDevis", "Client", new { id_devis = @ViewBag.allDevise[i].id })" class="d-flex justify-content-between text-muted"><span>Surface: @ViewBag.maison[i].surface m3</span><i class="fe fe-chevron-right"></i></a>
+                    </div>
+
+                           <a href="@Url.Action("Index", "Paiement", new { id_devis = @ViewBag.allDevise[i].id })"><button class="btn mb-2 btn-success">Payer </button> </a>
+                           <!-- .card-footer -->
+                  </div>
+
+                  <!-- .card -->
+}
+</div>

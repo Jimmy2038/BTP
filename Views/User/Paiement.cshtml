@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "Paiement";
+    Layout = "_Layout3";
+}
+
+<h2 class="mb-2 page-title">Paiement</h2>
+        <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                        <form asp-action="validerPaiement" asp-controller="Paiement" method="get" >
+
+                            <div class="form-group mb-3">
+                            <label for="simpleinput">Refference paiement</label>
+                            <input type="text" id="simpleinput" class="form-control" name="reff">
+                          </div>
+                          <div class="form-group mb-3">
+                            <label for="example-email">Montant</label>
+                            <input type="text"  class="form-control" name="montant">
+                          </div>
+                          <div class="form-group mb-3">
+                            <label for="date">Date payement</label>
+                            <input type="date" id="example-password" class="form-control" name="date_paiement">
+                          </div>
+                          <input type="hidden" name="idD" value="@ViewBag.idDevis" />
+                          <button class="btn btn-primary" type="submit">Valider</button>
+
+                        </form>
+                    </div>
+                  </div>
+                </div>

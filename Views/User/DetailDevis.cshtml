@@ -1,0 +1,55 @@
+﻿@using BTP.Models.Util_devis
+
+
+@{
+    ViewData["Title"] = "Client";
+    Layout = "_Layout3";
+}
+
+@model List<DetailDevis>
+<h2 class="mb-2 page-title">Detail devis</h2>
+<div class="row my-4">
+                <!-- Small table -->
+                <div class="col-md-12">
+                  <div class="card shadow">
+                    <div class="card-body">
+<table class="table datatables" >
+    <div class="row">
+            
+            
+
+          <button class="btn btn-xl fe fe-download col-2 ml-auto" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span class="text-muted">Export</span>
+          </button>
+          <div class="dropdown-menu ">
+              <a class="dropdown-item" href="@Url.Action("listTravauPdf","Export", new { id_devis = @Model[0].id_devis })" >Export PDF</a>
+          </div>
+   
+    </div>
+    
+    <thead>
+        <tr>
+            <th>N°</th>
+            <th>Designation</a></th>
+            <th>Unite</th>
+            <th>PU</th>
+            <th>Quantite</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var article in Model)
+        {
+            <tr>
+                <td>@article.code_travaux</td>
+                <td>@article.type_travaux</td>
+                <td>@article.unite</td>
+                <td>@article.unite</td>
+                <td>@article.quantite</td>
+                <td>@article.prixTotal</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Client -->

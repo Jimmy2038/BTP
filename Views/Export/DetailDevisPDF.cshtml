@@ -1,0 +1,106 @@
+﻿@using BTP.Models.Util_devis
+@{
+    Layout = null;
+}
+@model DetailDevisExportPDF
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste de Travaux</title>
+    <head>
+    <meta charset="UTF-8">
+    <title>Liste de Produits</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+     .container {
+            width: 80%;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+      table {
+          width: 100%;
+          border-collapse: collapse;
+      }
+      th, td {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: left;
+      }
+      th {
+          background-color: #4CAF50;
+          color: white;
+      }
+    </style>
+</head>
+</head>
+<body>
+    <div style="font-family: Arial, sans-serif;">
+        <h1>Liste de Travaux</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Designation</th>
+                    <th>Unite</th>
+                    <th>PU</th>
+                    <th>Quantite</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i=0;i< Model.detailDevis.Count;i++)
+                {
+                    <tr>
+                        <td>@Model.detailDevis[i].code_travaux</td>
+                        <td>@Model.detailDevis[i].type_travaux</td>
+                        <td>@Model.detailDevis[i].unite</td>
+                        <td>@Model.detailDevis[i].pu</td>
+                        <td>@Model.detailDevis[i].quantite</td>
+                        <td>@Model.detailDevis[i].prixTotal</td>
+                    </tr>
+                }
+                    <tr>
+                        <td>TOTAL</td>
+                        <td>@Model.totaldevis</td>
+                    </tr>
+            </tbody>
+        </table>
+        
+        <div style="margin-top: 20px;">
+            <h2>Paiements</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Payment ID</th>
+                        <th>ID Devis</th>
+                        <th>Montant</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(int i=0; i< Model.allPaiement.Count;i++)
+                    {
+                        <tr>
+                            <td>@Model.allPaiement[i].id</td>
+                            <td>@Model.allPaiement[i].id_devis</td>
+                            <td>@Model.allPaiement[i].montant</td>
+                        </tr>
+                    }
+                        <tr>
+                            <td>TOTAL</td>
+                            <td>@Model.totalpaiement</td>
+
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
